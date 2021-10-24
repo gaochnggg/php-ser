@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+use gc\ser\ConsoleKernel;
+use gc\ser\facades\App;
+
+include "vendor/autoload.php";
+
+require "./src/app.php";
+
+App::get(ConsoleKernel::class)->handle($argv);

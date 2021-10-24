@@ -1,0 +1,19 @@
+{
+    "name": "gc/ser",
+    "autoload": {
+        "psr-4": {
+            "gc\\ser\\": "src/"
+        }
+    },
+    "require": {
+        "ext-pcntl": "*",
+        "ext-sockets": "*",
+        "ext-posix": "*",
+        "hassankhan/config": "^2.2",
+        "simple-cli/simple-cli": "^1.6",
+        "ext-json": "*",
+        "pimple/pimple": "^3.4",
+        "league/event": "^3.0",
+        "blast/facades": "^1.0"
+    }
+}
