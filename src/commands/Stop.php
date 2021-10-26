@@ -7,7 +7,7 @@ use SimpleCli\Options\Help;
 use SimpleCli\Command;
 use SimpleCli\SimpleCli;
 
-class Start implements Command
+class Stop implements Command
 {
     use Help;
 
