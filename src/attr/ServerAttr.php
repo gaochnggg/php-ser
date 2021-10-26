@@ -13,6 +13,7 @@ class ServerAttr
     public $ip;
     public $port;
     public $protocol;
+    public $statTimeOnce;
 
     public function __construct(Config $config)
     {
@@ -20,7 +21,16 @@ class ServerAttr
         $this->worker_num = $config->get('worker_num');
         $this->ip = $config->get('ip');
         $this->port = $config->get('port');
-        $this->type = $config->get('type');
+        $this->protocol = $config->get('protocol');
+        $this->statTimeOnce = $config->get('stat_time_once');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatTimeOnce()
+    {
+        return $this->statTimeOnce;
     }
 
     /**
