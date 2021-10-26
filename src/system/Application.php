@@ -11,6 +11,7 @@ class Application extends Container
     protected $configPath;
     protected $runPath;
     protected $logPath;
+    protected $runPidPath;
 
     public static function getInstance()
     {
@@ -31,8 +32,13 @@ class Application extends Container
         $this->reg('app', $this);
         $this->reg('path.base', $this->basePath);
         $this->reg('path.config', $this->configPath);
-        $this->reg('path.public', $this->runPath);
-        $this->reg('path.storage', $this->logPath);
+        $this->reg('path.run', $this->runPath);
+        $this->reg('path.log', $this->logPath);
+        $this->reg('path.run.pid', $this->runPidPath);
+
+        $this->singleton(Safe::class, function (){
+            return new Safe();
+        });
     }
 
     /**
@@ -92,6 +98,14 @@ class Application extends Container
     public function logPath()
     {
         return $this->logPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function runPidPath()
+    {
+        return $this->runPidPath;
     }
 
 }
