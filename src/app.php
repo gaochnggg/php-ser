@@ -4,7 +4,9 @@
 use gc\ser\attr\ServerAttr;
 use gc\ser\ConsoleKernel;
 use gc\ser\facades\Facade;
+use gc\ser\facades\ServerAttr as ServerAttrFacades;
 use gc\ser\System\Application;
+use gc\ser\utils\MsgState;
 use League\Event\EventDispatcher;
 use Noodlehaus\Config;
 use gc\ser\facades\App;
@@ -27,5 +29,8 @@ App::singleton(EventDispatcher::class, function (){
     return new EventDispatcher();
 });
 
-
+// 注册统计服务
+App::singleton(MsgState::class, function (){
+    return new MsgState(ServerAttrFacades::getStatTimeOnce());
+});
 
