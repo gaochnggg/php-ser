@@ -4,5 +4,6 @@
   "ip": "0.0.0.0",
   "port": "9501",
   "protocol": "http",
+  "daemon": true,
   "stat_time_once": "2"
 }

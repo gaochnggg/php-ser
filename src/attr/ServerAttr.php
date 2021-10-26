@@ -14,6 +14,7 @@ class ServerAttr
     public $port;
     public $protocol;
     public $statTimeOnce;
+    public $daemon;
 
     public function __construct(Config $config)
     {
@@ -23,6 +24,7 @@ class ServerAttr
         $this->port = $config->get('port');
         $this->protocol = $config->get('protocol');
         $this->statTimeOnce = $config->get('stat_time_once');
+        $this->daemon = $config->get('daemon');
     }
 
     /**
@@ -111,5 +113,13 @@ class ServerAttr
     public function setProtocol($protocol): void
     {
         $this->protocol = $protocol;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDaemon()
+    {
+        return $this->daemon;
     }
 }
