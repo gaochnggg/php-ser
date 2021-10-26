@@ -3,5 +3,6 @@
   "worker_num": 2,
   "ip": "0.0.0.0",
   "port": "9501",
-  "protocol": "http"
+  "protocol": "http",
+  "stat_time_once": "2"
 }
