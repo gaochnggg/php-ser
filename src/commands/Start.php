@@ -4,7 +4,6 @@
 namespace gc\ser\commands;
 
 use gc\ser\facades\App;
-use gc\ser\facades\Safe;
 use SimpleCli\Options\Help;
 use SimpleCli\Command;
 use SimpleCli\SimpleCli;
@@ -15,13 +14,15 @@ class Start implements Command
 
     public function run(SimpleCli $cli): bool
     {
-        $this->init();
-
+        // 检测是否有服务在运行
+        $this->checkMasterStatus();
+        // 保存 主进程id信息
+        $this->saveMasterPid();
 
         return true;
     }
 
-    private function init()
+    private function checkMasterStatus()
     {
         if (file_exists(App::runPidPath())){
             $masterPid = file_get_contents(App::runPidPath());
@@ -36,9 +37,14 @@ class Start implements Command
             $masterPid != posix_getpid()
         ){
             exit("server already running...");
-        }else{
+        }else if ($masterPid > 0){
             unlink(App::runPidPath());
         }
+    }
 
+    private function saveMasterPid()
+    {
+        $masterPid = posix_getpid();
+        file_put_contents(App::runPidPath(), $masterPid);
     }
 }
