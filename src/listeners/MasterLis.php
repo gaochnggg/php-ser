@@ -4,8 +4,8 @@
 namespace gc\ser\listeners;
 
 
-use gc\ser\events\MasterShutdownEvent;
-use gc\ser\events\MasterStartEvent;
+use gc\ser\events\sys\MasterShutdownEvent;
+use gc\ser\events\sys\MasterStartEvent;
 use gc\ser\facades\Safe;
 
 class MasterLis

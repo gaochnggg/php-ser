@@ -4,19 +4,19 @@
 namespace gc\ser\listeners;
 
 
-use gc\ser\events\MasterShutdownEvent;
-use gc\ser\events\MasterStartEvent;
-use gc\ser\events\TcpAcceptEvent;
-use gc\ser\events\TcpCloseEvent;
-use gc\ser\events\TcpReceiveEvent;
-use gc\ser\events\WorkerReloadEvent;
-use gc\ser\events\WorkerStartEvent;
-use gc\ser\events\WorkerStopEvent;
+use gc\ser\events\sys\MasterShutdownEvent;
+use gc\ser\events\sys\MasterStartEvent;
+use gc\ser\events\sys\TcpAcceptEvent;
+use gc\ser\events\sys\TcpCloseEvent;
+use gc\ser\events\sys\TcpReceiveEvent;
+use gc\ser\events\sys\WorkerReloadEvent;
+use gc\ser\events\sys\WorkerStartEvent;
+use gc\ser\events\sys\WorkerStopEvent;
 use gc\ser\facades\EventDispatcher;
 
 class Listeners
 {
-    public static function register()
+    public static function sysRegister()
     {
         $list = [
             WorkerStartEvent::class => WorkerLis::start(),
@@ -34,5 +34,8 @@ class Listeners
         foreach ($list as $k => $call){
             EventDispatcher::subscribeTo($k, $call);
         }
+
+        // 注册系统事件处理函数
+        SignalLis::regDefaultHandler();
     }
 }
