@@ -5,7 +5,7 @@ namespace gc\ser;
 
 use Exception;
 use gc\ser\commands\Start;
-use gc\ser\listeners\Listeners;
+use gc\ser\commands\Stop;
 use SimpleCli\SimpleCli;
 
 class ConsoleKernel extends SimpleCli
@@ -18,7 +18,8 @@ class ConsoleKernel extends SimpleCli
     public function getCommands() : array
     {
         return [
-            'start' => Start::class
+            'start' => Start::class,
+            'stop' => Stop::class
         ]; // Your class needs to implement the getCommands(), we'll see later what to put in here.
     }
 
@@ -31,9 +32,6 @@ class ConsoleKernel extends SimpleCli
      */
     public function handle($argv)
     {
-        // 注册默认事件处理
-        Listeners::register();
-
         try {
             return $this(...$argv);
         } catch (Exception $e) {
