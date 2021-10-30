@@ -5,6 +5,10 @@ use Pimple\Container;
 
 class Application extends Container
 {
+    public const STATUS_STARTING = 1;
+    public const STATUS_RUNNING = 2;
+    public const STATUS_SHUTDOWN = 3;
+
     private static $instance;
 
     protected $basePath;
@@ -26,8 +30,9 @@ class Application extends Container
     {
         $this->basePath = __DIR__ . '/../..';
         $this->configPath = $this->basePath .DIRECTORY_SEPARATOR. "config";
-        $this->runPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run";
         $this->logPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."log";
+        $this->runPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run";
+        $this->runPidPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run" . DIRECTORY_SEPARATOR . "pid.log";
 
         $this->reg('app', $this);
         $this->reg('path.base', $this->basePath);
