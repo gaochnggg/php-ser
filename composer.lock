@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30b51cb3b3976cabb16e4d008bebdc59",
+    "content-hash": "b315aa5b3ac933921c744d8895832a40",
     "packages": [
         {
             "name": "blast/facades",
@@ -433,7 +433,45 @@
             "time": "2020-11-18T22:40:00+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "paulxu-cn/event-ide-helper",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PaulXu-cn/event-ide-helper.git",
+                "reference": "4c513b36a5a9a0101c788e9b6ccb598423b33d05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PaulXu-cn/event-ide-helper/zipball/4c513b36a5a9a0101c788e9b6ccb598423b33d05",
+                "reference": "4c513b36a5a9a0101c788e9b6ccb598423b33d05",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Xu",
+                    "email": "dianzikdcdmain@163.com"
+                }
+            ],
+            "description": "PHP ext-Event IDE Helper",
+            "support": {
+                "issues": "https://github.com/PaulXu-cn/event-ide-helper/issues",
+                "source": "https://github.com/PaulXu-cn/event-ide-helper/tree/0.1"
+            },
+            "time": "2020-06-07T15:07:23+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],

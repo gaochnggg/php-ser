@@ -15,5 +15,8 @@
         "pimple/pimple": "^3.4",
         "league/event": "^3.0",
         "blast/facades": "^1.0"
+    },
+    "require-dev": {
+        "paulxu-cn/event-ide-helper": "^0.1.0"
     }
 }
