@@ -5,6 +5,7 @@ namespace gc\ser\facades;
 
 /**
  * @method static void echo(string $name)
+ * @method static void printf(string $format, ...$data)
  *
  * @see \gc\ser\system\Safe
  */

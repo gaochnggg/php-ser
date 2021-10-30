@@ -20,4 +20,9 @@ class Safe
             echo $msg;
         }
     }
+
+    public function printf($format, ...$data)
+    {
+        $this->echo(sprintf($format, ...$data));
+    }
 }
