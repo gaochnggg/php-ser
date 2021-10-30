@@ -17,6 +17,10 @@ use gc\ser\attr\ServRuntimeAttr;
  * @method static mixed setCons($fp, $tcpConnect)
  * @method static mixed unsetCon($fp)
  * @method static mixed clearCons()
+ * @method static void setProcessId(int $processId)
+ * @method static void setProcessName(string $processName)
+ * @method static int getProcessId()
+ * @method static string getProcessName()
  * @see ServerAttrConfig
  */
 class ServRuntime extends Facade

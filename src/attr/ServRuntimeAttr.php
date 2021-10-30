@@ -13,6 +13,8 @@ class ServRuntimeAttr
     public $serverSource;
     public $address;
     public $cons;
+    private $processName;
+    private $processId;
 
     /**
      * @return array
@@ -113,5 +115,18 @@ class ServRuntimeAttr
     public function setServerStatus($serverStatus)
     {
         $this->serverStatus = $serverStatus;
+    }
+
+    public function setProcessId(int $processId){
+        $this->processId = $processId;;
+    }
+    public function setProcessName(string $processName){
+        $this->processName = $processName;
+    }
+    public function getProcessId(){
+        return $this->processId;
+    }
+    public function getProcessName(){
+        return $this->processName;
     }
 }
