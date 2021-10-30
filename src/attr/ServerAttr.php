@@ -14,7 +14,17 @@ class ServerAttr
     public $port;
     public $protocol;
     public $statTimeOnce;
-    public $daemon;
+    public $engine;
+    public $checkHeartTimeout;
+    private $daemon;
+
+    /**
+     * @return mixed|null
+     */
+    public function getCheckHeartTimeout()
+    {
+        return $this->checkHeartTimeout;
+    }
 
     public function __construct(Config $config)
     {
@@ -24,7 +34,9 @@ class ServerAttr
         $this->port = $config->get('port');
         $this->protocol = $config->get('protocol');
         $this->statTimeOnce = $config->get('stat_time_once');
+        $this->checkHeartTimeout = $config->get('check_heart_timeout');
         $this->daemon = $config->get('daemon');
+        $this->engine = $config->get('engine');
     }
 
     /**
@@ -122,4 +134,13 @@ class ServerAttr
     {
         return $this->daemon;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
 }

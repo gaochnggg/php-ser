@@ -11,7 +11,9 @@ use gc\ser\attr\ServerAttr as ServerAttrConfig;
  * @method static mixed getPort()
  * @method static mixed getProtocol()
  * @method static mixed getStatTimeOnce()
+ * @method static mixed getCheckHeartTimeOut()
  * @method static mixed getDaemon()
+ * @method static mixed getEngine()
  *
  * @see ServerAttrConfig
  */

@@ -3,7 +3,8 @@
   "worker_num": 2,
   "ip": "0.0.0.0",
   "port": "9501",
-  "protocol": "http",
-  "daemon": true,
+  "engine": "epoll",
+  "protocol": "text",
+  "daemon": false,
   "stat_time_once": "2"
 }
