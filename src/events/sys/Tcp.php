@@ -11,7 +11,7 @@ abstract class Tcp
     /**
      * @var TcpConnect
      */
-    protected $tcpConnect;
+    public $tcpConnect;
 
     public function __construct(TcpConnect $tcpConnect)
     {

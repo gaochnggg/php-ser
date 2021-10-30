@@ -8,7 +8,7 @@ use gc\ser\system\TcpConnect;
 
 class TcpReceiveEvent extends Tcp
 {
-    protected $data;
+    public $data;
 
     public function __construct(TcpConnect $tcpConnect, $data)
     {

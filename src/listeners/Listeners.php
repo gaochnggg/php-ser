@@ -35,7 +35,5 @@ class Listeners
             EventDispatcher::subscribeTo($k, $call);
         }
 
-        // 注册系统事件处理函数
-        SignalLis::regDefaultHandler();
     }
 }
