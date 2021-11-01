@@ -4,7 +4,8 @@
   "ip": "0.0.0.0",
   "port": "9501",
   "engine": "epoll",
-  "protocol": "text",
+  "protocol": "http",
   "daemon": false,
-  "stat_time_once": 10
+  "stat_time_once": 10,
+  "root": "default"
 }
