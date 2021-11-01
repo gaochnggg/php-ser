@@ -1,6 +1,7 @@
 <?php
 namespace gc\ser\system;
 
+use gc\ser\facades\App;
 use Pimple\Container;
 
 class Application extends Container
@@ -11,6 +12,7 @@ class Application extends Container
 
     private static $instance;
 
+    protected $publicPath;
     protected $basePath;
     protected $configPath;
     protected $runPath;
@@ -29,12 +31,14 @@ class Application extends Container
     private function bootstrap()
     {
         $this->basePath = __DIR__ . '/../..';
+        $this->publicPath = $this->basePath .DIRECTORY_SEPARATOR. "public";
         $this->configPath = $this->basePath .DIRECTORY_SEPARATOR. "config";
         $this->logPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."log";
         $this->runPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run";
         $this->runPidPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run" . DIRECTORY_SEPARATOR . "pid.log";
 
         $this->reg('app', $this);
+        $this->reg('path.public', $this->publicPath);
         $this->reg('path.base', $this->basePath);
         $this->reg('path.config', $this->configPath);
         $this->reg('path.run', $this->runPath);
@@ -113,4 +117,16 @@ class Application extends Container
         return $this->runPidPath;
     }
 
+    /**
+     * @return string
+     */
+    public function publicPath()
+    {
+        return $this->publicPath;
+    }
+
+    public function netReceiveClass()
+    {
+        return App::get("net.receive");
+    }
 }

@@ -6,6 +6,7 @@ namespace gc\ser\system;
 
 use gc\ser\events\sys\TcpCloseEvent;
 use gc\ser\events\sys\TcpReceiveEvent;
+use gc\ser\facades\App;
 use gc\ser\facades\Engine;
 use gc\ser\facades\EventDispatcher;
 use gc\ser\facades\MsgState;
@@ -128,6 +129,7 @@ class TcpConnect
 
     private function receiveMessageDo()
     {
+        $receiveClass = App::netReceiveClass();
         // 数据循环解析
         while (Protocol::Len($this->recvBuffer) > 0) {
             $msgLen = Protocol::msgLen($this->recvBuffer);
@@ -140,8 +142,7 @@ class TcpConnect
 
             // 最后收包的时间
             $this->resetHeartTime();
-            // 判断条件 拆包
-            EventDispatcher::dispatch(new TcpReceiveEvent($this, $decodeDate));
+            EventDispatcher::dispatch(new $receiveClass($this, $decodeDate));
         }
     }
 

@@ -7,6 +7,7 @@ use Exception;
 use gc\ser\commands\Start;
 use gc\ser\commands\Stop;
 use SimpleCli\SimpleCli;
+use Throwable;
 
 class ConsoleKernel extends SimpleCli
 {
@@ -28,7 +29,7 @@ class ConsoleKernel extends SimpleCli
      *
      * @param $argv
      * @return int
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function handle($argv)
     {
@@ -36,7 +37,7 @@ class ConsoleKernel extends SimpleCli
             return $this(...$argv);
         } catch (Exception $e) {
             throw $e;
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             throw $e;
         }
     }

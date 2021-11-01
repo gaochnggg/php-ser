@@ -7,7 +7,6 @@ use gc\ser\events\sys\TcpAcceptEvent;
 use gc\ser\events\sys\WorkerReloadEvent;
 use gc\ser\events\sys\WorkerStartEvent;
 use gc\ser\events\sys\WorkerStopEvent;
-use gc\ser\facades\App;
 use gc\ser\facades\Engine;
 use gc\ser\facades\EventDispatcher;
 use gc\ser\facades\MsgState;

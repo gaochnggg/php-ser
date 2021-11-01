@@ -11,6 +11,7 @@ namespace gc\ser\facades;
  * @method static void reg(string $name, $call)
  * @method static void singleton(string $name, $call)
  * @method static mixed get(string $name)
+ * @method static mixed netReceiveClass()
  *
  * @see \gc\ser\system\Application
  */

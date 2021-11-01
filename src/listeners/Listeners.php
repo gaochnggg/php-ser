@@ -4,6 +4,7 @@
 namespace gc\ser\listeners;
 
 
+use gc\ser\events\sys\HttpReceiveEvent;
 use gc\ser\events\sys\MasterShutdownEvent;
 use gc\ser\events\sys\MasterStartEvent;
 use gc\ser\events\sys\TcpAcceptEvent;
@@ -29,6 +30,7 @@ class Listeners
             TcpAcceptEvent::class => TcpLis::accept(),
             TcpCloseEvent::class => TcpLis::close(),
             TcpReceiveEvent::class => TcpLis::receive(),
+            HttpReceiveEvent::class => HttpLis::receive(),
         ];
 
         foreach ($list as $k => $call){

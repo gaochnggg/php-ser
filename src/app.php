@@ -4,11 +4,14 @@
 use gc\ser\attr\ServerAttr;
 use gc\ser\attr\ServRuntimeAttr;
 use gc\ser\ConsoleKernel;
+use gc\ser\events\sys\HttpReceiveEvent;
+use gc\ser\events\sys\TcpReceiveEvent;
 use gc\ser\facades\Facade;
 use gc\ser\facades\ServerAttr as ServerAttrFacades;
 use gc\ser\System\Application;
 use gc\ser\system\engines\EngineInterface;
 use gc\ser\system\engines\Epoll;
+use gc\ser\system\protocols\Http;
 use gc\ser\system\protocols\Protocol;
 use gc\ser\system\protocols\Text;
 use gc\ser\utils\MsgState;
@@ -56,10 +59,23 @@ App::singleton(EngineInterface::class, function (){
 
 // 注册应用层协议
 App::singleton(Protocol::class, function (){
-//    $protocol = ServerAttrFacades::getProtocol();
-    return new Text();
+    $protocol = ServerAttrFacades::getProtocol();
     if ($protocol == 'text'){
         return new Text();
     }
+    if ($protocol == 'http'){
+        return new Http();
+    }
     throw new Exception("Protocol err");
+});
+
+App::singleton("net.receive", function (){
+    $protocol = ServerAttrFacades::getProtocol();
+    if ($protocol == 'text'){
+        return  '\\'.TcpReceiveEvent::class;
+    }
+    if ($protocol == 'http'){
+        return '\\'.HttpReceiveEvent::class;
+    }
+    throw new Exception("receive err");
 });
