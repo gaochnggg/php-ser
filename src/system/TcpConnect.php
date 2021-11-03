@@ -66,7 +66,7 @@ class TcpConnect
         $this->connectStatus = self::STATUS_CONNECTED;
 
         Engine::add($fp, EngineInterface::EV_READ, [$this, 'receiveMessage']);
-        $this->checkHeartTimeId = Engine::add(ServerAttr::getCheckHeartTimeOut(), EngineInterface::EV_TIMER, [$this, 'checkHeartTime']);
+//        $this->checkHeartTimeId = Engine::add(ServerAttr::getCheckHeartTimeOut(), EngineInterface::EV_TIMER, [$this, 'checkHeartTime']);
     }
 
     /**

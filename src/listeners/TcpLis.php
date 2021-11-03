@@ -20,7 +20,7 @@ class TcpLis
                 ServRuntime::getProcessName(),
                 (int)$event->tcpConnect->getFp()
             );
-            $event->tcpConnect->sendMessage("aaaa");
+            // $event->tcpConnect->sendMessage("aaaa");
         };
     }
 
