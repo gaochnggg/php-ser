@@ -18,6 +18,7 @@ class Application extends Container
     protected $runPath;
     protected $logPath;
     protected $runPidPath;
+    protected $tmpPath;
 
     public static function getInstance()
     {
@@ -34,6 +35,7 @@ class Application extends Container
         $this->publicPath = $this->basePath .DIRECTORY_SEPARATOR. "public";
         $this->configPath = $this->basePath .DIRECTORY_SEPARATOR. "config";
         $this->logPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."log";
+        $this->tmpPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."tmp";
         $this->runPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run";
         $this->runPidPath = $this->basePath .DIRECTORY_SEPARATOR. "storage".DIRECTORY_SEPARATOR."run" . DIRECTORY_SEPARATOR . "pid.log";
 
@@ -42,6 +44,7 @@ class Application extends Container
         $this->reg('path.base', $this->basePath);
         $this->reg('path.config', $this->configPath);
         $this->reg('path.run', $this->runPath);
+        $this->reg('path.tmp', $this->tmpPath);
         $this->reg('path.log', $this->logPath);
         $this->reg('path.run.pid', $this->runPidPath);
 
@@ -123,6 +126,14 @@ class Application extends Container
     public function publicPath()
     {
         return $this->publicPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function tmpPath()
+    {
+        return $this->tmpPath;
     }
 
     public function netReceiveClass()
