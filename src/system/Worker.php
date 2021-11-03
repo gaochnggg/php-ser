@@ -42,9 +42,9 @@ class Worker
         $serverResource = $this->listen();
         // 添加监听事件
         Engine::add($serverResource, EngineInterface::EV_READ, [$this, 'accept']);
-        Engine::add(ServerAttr::getStatTimeOnce(), EngineInterface::EV_TIMER, function (){
-            Safe::echo(MsgState::showStatus());
-        });
+//        Engine::add(ServerAttr::getStatTimeOnce(), EngineInterface::EV_TIMER, function (){
+//            Safe::echo(MsgState::showStatus());
+//        });
 
         EventDispatcher::dispatch(new WorkerStartEvent());
         Engine::loop();
