@@ -7,6 +7,7 @@ namespace gc\ser\listeners;
 use gc\ser\events\sys\HttpReceiveEvent;
 use gc\ser\facades\Safe;
 use gc\ser\facades\ServRuntime;
+use gc\ser\system\protocols\Http;
 
 class HttpLis extends TcpLis
 {
@@ -19,7 +20,8 @@ class HttpLis extends TcpLis
                 $event->data
             );
             // 处理 http 请求
-
+            $request = Http::parseData($event->data);
+            var_dump($request->getUploadedFiles());
         };
     }
 }

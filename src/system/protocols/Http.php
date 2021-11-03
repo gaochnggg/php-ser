@@ -4,6 +4,8 @@
 namespace gc\ser\system\protocols;
 
 
+use gc\ser\system\http\Request;
+
 class Http implements Protocol
 {
 
@@ -34,7 +36,7 @@ class Http implements Protocol
 
     public function decode($data='')
     {
-        return rtrim($data,"\n");
+        return $data;
     }
 
     //返回一条消息的总长度
@@ -48,20 +50,25 @@ class Http implements Protocol
         return $headerLen + $bodyLen;
     }
 
-    public static function parseHeader($data)
+    public static function parseData($data)
     {
-        $headerSources = explode("\r\n",$data);
-        list($method,$uri,$schema) = explode(" ", $headerSources[0]);
-        $uri = parse_url($uri)['path'];
-        parse_str(parse_url($uri,PHP_URL_QUERY),$gets);
+        $headerLen = strpos($data,"\r\n\r\n");
+        $headerStrWithQuery = substr($data, 0, $headerLen);
 
-        // $method, $uri, $schema, $gets
-        $headers = [];
-        unset($headerSources[0]);
-        foreach ($headerSources as $headerSource){
-            $headerSourceArr = explode(": ", $headerSource,2);
-            $key = str_replace("-","_", $headerSourceArr[0]);
-            $headers[$key] = rtrim($headerSourceArr[1]);
-        }
+        $reqHeadStr = substr($headerStrWithQuery, 0, strpos($headerStrWithQuery, "\r\n"));
+        list($method, $uriWithParam, $schema) = explode(" ", $reqHeadStr);
+        $schema = substr($schema, strpos($schema, 'HTTP/')+5);
+
+        $headerStr = substr($headerStrWithQuery, strpos($headerStrWithQuery, "\r\n")+2);
+        $headers = Request::parseRawHeader($headerStr);
+        $bodyStr = substr($data, $headerLen + 4);
+
+        return new Request(
+            $method,
+            $uriWithParam,
+            $bodyStr,
+            $headers,
+            $schema
+        );
     }
 }
