@@ -5,8 +5,10 @@ namespace gc\ser\listeners;
 
 
 use gc\ser\events\sys\HttpReceiveEvent;
+use gc\ser\facades\App;
 use gc\ser\facades\Safe;
 use gc\ser\facades\ServRuntime;
+use gc\ser\system\http\Response;
 use gc\ser\system\protocols\Http;
 
 class HttpLis extends TcpLis
@@ -21,7 +23,17 @@ class HttpLis extends TcpLis
             );
             // 处理 http 请求
             $request = Http::parseData($event->data);
-            var_dump($request->getUploadedFiles());
+            $path = $request->getUri()->getPath();
+            Safe::printf("req path is [%s]", $path);
+
+            $response = new Response($event->tcpConnect, $request);
+
+            $tryFile = App::publicPath() . DIRECTORY_SEPARATOR . $path;
+            if (file_exists($tryFile)){
+                $response->sendFile($tryFile);
+                return;
+            }
+            $response->status(404)->write("route not find!");
         };
     }
 }

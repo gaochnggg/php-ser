@@ -3,6 +3,7 @@
 namespace gc\ser\facades;
 
 /**
+ * @method static string publicPath()
  * @method static string basePath()
  * @method static string configPath()
  * @method static string runPath()
